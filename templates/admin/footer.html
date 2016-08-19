@@ -32,5 +32,15 @@
 		</div>
 		
 		<!-- END SHORTCUT AREA -->
+<script>
+	if($(".alert").length>0){
+		if(($(".alert").html()).indexOf("success")>=0||($(".alert").html()).indexOf("Please check your email to recovery the password.")>=0){
+			$(".alert").addClass('alert-success');
+		}
+		else{
+			$(".alert").addClass('alert-danger');
+		}
+	}
+</script>
 	</body>
 </html>

@@ -35,6 +35,15 @@
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> Post</h1>
 					</div>
+					 {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                        {% for message in messages %}
+                          <div class="alert"> 
+                            {{ message }}
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
 					<!-- end col -->
 
 					<!-- right side of the page with the sparkline graphs -->
@@ -65,6 +74,61 @@
 						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 							<table id="jqgrid"></table>
+							<center>
+                        <ul class="pagination pagination-sm">
+                        {% if pagin > 1 %}
+	                        {% if pagin < 8 %}
+			                    	{% for page in range(1,pagin+1) %}
+				                    	{% if page == current_pagin %}
+				                    		<li class="active">
+				                    			<a href="/admin/{{page}}">
+				                    				{{page}}
+				                    			</a>
+				                    		</li>
+				                    	{%else%}
+				                    		<li>
+				                    			<a href="/admin/{{page}}">
+				                    				{{page}}
+				                    			</a>
+				                    		</li>
+				                    	{%endif%}
+									{%endfor%}
+								</ul>
+							{%else %}
+								<li class="{%if current_pagin==1 %}active{%endif%}">
+									<a href="/admin/1">1</a>
+								</li>
+								<li class="{%if current_pagin==2 %}active{%endif%}">
+									<a href="/admin/2">2</a>
+								</li>
+								<li class="{%if current_pagin==3 %}active{%endif%}">
+									<a href="/admin/3">3</a>
+								</li>
+								<li class="{%if current_pagin==4 %}active{%endif%}">
+									<a href="/admin/4">4</a>
+								</li>
+								<li>
+									<a href="#">...</a>
+								</li>
+								{% for page in range(pagin-4,pagin+1) %}
+									{% if current_pagin == page%}
+								  <li class="active">
+								  	<a href="/admin/{{page}}">
+								  		{{page}}
+								  	</a>
+								  	</li>
+								 {%else%}
+								 	<li>
+								  	<a href="/admin/{{page}}">
+								  		{{page}}
+								  	</a>
+								  	</li>
+								 {%endif%}
+								{%endfor%}
+							{%endif%}
+						{%endif%}
+						</ul>
+						</center>
 							<div id="pjqgrid"></div>
 
 							<br>
@@ -167,7 +231,7 @@
 						}
 					},
 					editurl : "/",
-					caption : "SmartAmind jQgrid Skin",
+					caption : "Post",
 					multiselect : false,
 					autowidth : true,
 					height: 3000,
