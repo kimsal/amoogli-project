@@ -1,0 +1,87 @@
+<footer id="footer">
+    <div class="container  post">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-4 column">
+                <h4 class="title-h4">Our Tour Categories</h4>
+
+                <ul class="nav">
+                {%for category in categories%}
+                    <li class="list"><a href="/{{category.slug}}">{{category.name}}</a></li>
+                {%endfor%}
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-4 column">
+                <h4 class="title-h4" >Follow Us</h4>
+                <ul class="nav">
+                    <li class="list"><a href="https://www.youtube.com/channel/UCeuyw71U_ORDOOyPFWH015A" target="_blank">
+                    Youtube
+                    </a></li>
+                    <li class="list">
+                    <a href="https://www.facebook.com/toursanak/?fref=ts&ref=br_tf"  target="_blank">Facebook</a>
+                    </li>
+                    <li class="list">
+                    <a href="https://twitter.com/Toursanak"  target="_blank">Twitter</a>
+                    </li>
+                    <li class="list">
+                    <a href="https://plus.google.com/103499184267922516982/posts"  target="_blank">Google+</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-md-4 column">
+                <h4 class="title-h4">Contact us</h4>
+                <ul class="nav">
+                    <li class="list"><a href="#">Tel: +855-70-453-236</a></li>
+                    <li class="list"><a href="#">Email: toursanak@gmail.com </a></li>
+                    <li class="list"><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--/row-->
+        <hr>
+        <center>
+        <a href="http://www.amoogli.com" target="blank" style="color:white;margin-top:20px;font-weight:700;">Amoogli.com
+        </a> &copy; 2016. All Rights Reserved.</p>
+        </center>
+    </div>
+</footer>
+
+<!--slide-->
+	<script type="text/javascript">
+		$('#example1').coreSlider({
+		  pauseOnHover: false,
+		  interval: 3000,
+		  controlNavEnabled: true
+		});
+	</script>
+
+<!--end slide-->
+<!--scroll effect-->
+<script type="text/javascript" src="assets/viewportchecker.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    try{
+    	jQuery('.no').addClass("hidden").viewportChecker({
+    	    classToAdd: 'visible animated fadeIn', // Class to add to the elements when they are visible
+    	    offset: 100    
+    	   });  
+    }
+    catch(err) {
+        console.log(err);
+    }    
+});            
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    try{
+    	jQuery('.post').addClass("hidden").viewportChecker({
+    	    classToAdd: 'visible animated fadeInDown', // Class to add to the elements when they are visible
+    	    offset: 100    
+    	   });  
+    }
+    catch(err) {
+        console.log(err);
+    } 
+});            
+</script>
+</body>
+</html>
