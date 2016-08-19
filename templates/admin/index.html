@@ -117,7 +117,7 @@
 		 {% for post in posts %}
 		 <script type="text/javascript">
 		 	temp=moment().from("{{post.published_at}}");
-		 	jqgrid_data.push({"title":"{{post.title}}","published_at":temp,"category":"{{post.category.name}}","view":"{{post.views}}"});
+		 	jqgrid_data.push({"title":"<a href='/admin/post/edit/{{post.slug}}'>{{post.title}}</a>","published_at":temp,"category":"{{post.category.name}}","view":"{{post.views}}","action":"<a href='/admin/post/delete/{{post.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/post/edit/{{post.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
 		 </script>
 		 {%endfor%}
 
@@ -125,27 +125,11 @@
 			$(document).ready(function() {
 				pageSetUp();
 
-				// var jqgrid_data = [{
-				// 	title : "tis is title 2",
-				// 	published_at:'2012-3-7',
-				// 	category : "test",
-				// 	view : "100"
-				// }, {
-				// 	title : "tis is title",
-				// 	published_at:'2012-3-3',
-				// 	category : "test",
-				// 	view : "13"
-				// }];
-
 				jQuery("#jqgrid").jqGrid({
 					data : jqgrid_data,
 					datatype : "local",
-					colNames : ['Actions', 'Title','Published at', 'Category', 'View'],
+					colNames : ['Title','Published', 'Category', 'Views','Actions'],
 					colModel : [{
-						name : 'act',
-						index : 'act',
-						sortable : false
-					},{
 						name : 'title',
 						index : 'title',
 						editable : false
@@ -160,6 +144,9 @@
 					}, {
 						name : 'view',
 						index : 'view'
+					}, {
+						name : 'action',
+						index : 'action'
 					}],
 					rowList: [],        // disable page size dropdown
 				    pgbuttons: false,     // disable page control like next, back button
@@ -171,9 +158,9 @@
 						var ids = jQuery("#jqgrid").jqGrid('getDataIDs');
 						for (var i = 0; i < ids.length; i++) {
 							var cl = ids[i];
-							be = "";
+							be = "<a href='/admin/post/delete/' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>";
 							se = "";
-							ca = "<button class='btn btn-xs btn-default' data-original-title='Cancel' onclick=\"jQuery('#jqgrid').restoreRow('" + cl + "');\"><i class='fa fa-times'></i></button>";
+							ca = "<a href='' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>";
 							jQuery("#jqgrid").jqGrid('setRowData', ids[i], {
 								act : be + se + ca
 							});
