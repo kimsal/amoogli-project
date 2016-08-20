@@ -1,6 +1,6 @@
 {% include '/admin/header.html' %} 
 		<!-- END NAVIGATION -->
-
+		
 		<!-- MAIN PANEL -->
 		<div id="main" role="main">
 
@@ -30,10 +30,12 @@
 
 				<!-- row -->
 				<div class="row">
+					<a href="/admin/post/add">
 					<button class="btn btn-default pull-right btn-add" >
 						<span class="fa fa-plus-circle" aria-hidden="true"></span>
 						New
 					</button>
+					</a>
 					<!-- col -->
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> Post</h1>
@@ -241,7 +243,7 @@
 
 				});
 				jQuery("#jqgrid").jqGrid('navGrid', "#pjqgrid", {
-					edit : false,
+					edit : false, 
 					add : false,
 					del : true
 				});

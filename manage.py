@@ -1265,6 +1265,7 @@ def search(pagination=1):
 # 	return render_template(template+'/booking.html')
 #end client
 if __name__ == '__main__':
-	 app.run(use_reloader=False,debug = True,host='0.0.0.0')
-#replace white space:
+	app.run(debug = True,host='0.0.0.0')
+# 	 app.run(use_reloader=False,debug = True,host='0.0.0.0')
+# #replace white space:
 #http://docs.python-requests.org/en/master/user/quickstart/
