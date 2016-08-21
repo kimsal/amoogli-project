@@ -7,11 +7,6 @@ migrate database:
 
 
 
-
-
-
-
-
 For developer:
 https://github.com/flask-admin/flask-admin
 http://flask-admin.readthedocs.io/en/latest/introduction/#working-with-the-built-in-templates
