@@ -133,7 +133,7 @@
      {% for page in pages %}
      <script type="text/javascript">
       temp=moment().from("{{page.published_at}}");
-      jqgrid_data.push({"title":"<a href='/admin/page/edit/{{page.slug}}'>{{page.title}}</a>","published_at":temp,"action":"<a href='/admin/page/delete/{{page.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/page/edit/{{page.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
+      jqgrid_data.push({"title":"<a href='/{{page.slug}}' target='_blank'>{{page.title}}</a>","published_at":temp,"action":"<a href='/admin/page/delete/{{page.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/page/edit/{{page.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
      </script>
      {%endfor%}
 

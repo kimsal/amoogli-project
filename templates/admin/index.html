@@ -30,10 +30,10 @@
 
 				<!-- row -->
 				<div class="row">
-					<button class="btn btn-default pull-right btn-add" >
+					<a href="/admin/post/add" class="btn btn-default pull-right btn-add" >
 						<span class="fa fa-plus-circle" aria-hidden="true"></span>
 						New
-					</button>
+					</a>
 					<!-- col -->
 					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> Post</h1>
@@ -164,7 +164,7 @@
 		 {% for post in posts %}
 		 <script type="text/javascript">
 		 	temp=moment().from("{{post.published_at}}");
-		 	jqgrid_data.push({"title":"<a href='/admin/post/edit/{{post.slug}}'>{{post.title}}</a>","published_at":temp,"category":"{{post.category.name}}","view":"{{post.views}}","action":"<a href='/admin/post/delete/{{post.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/post/edit/{{post.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
+		 	jqgrid_data.push({"title":"<a href='/{{post.slug}}' target='_blank'>{{post.title}}</a>","published_at":temp,"category":"{{post.category.name}}","view":"{{post.views}}","action":"<a href='/admin/post/delete/{{post.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/post/edit/{{post.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
 		 </script>
 		 {%endfor%}
 
