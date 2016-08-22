@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from database import *
 from sqlalchemy.orm import relationship
 from slugify import slugify

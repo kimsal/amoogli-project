@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from flask import Flask,g, render_template,request,session,redirect,url_for,flash
 from werkzeug import secure_filename
 import os
