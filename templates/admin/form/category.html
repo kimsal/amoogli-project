@@ -20,16 +20,20 @@
     <!-- widget grid -->
     <section id="widget-grid" class="">
       <!-- row -->
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert" style="margin-left:1px;"> 
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+          </div>
+      </div>
       <div class="row"> 
-       {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert col-xs-12  col-sm-6 col-md-6 col-lg-6" style="margin-left:1px;"> 
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
         <!-- NEW WIDGET START -->
         <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
           <!-- Widget ID (each widget will need unique ID)-->
