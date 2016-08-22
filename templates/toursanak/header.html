@@ -53,6 +53,7 @@
 
     {%if page_name=="home"%}
 	   <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/index.css">
+       <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/slider-pro.min.css">
     {%elif page_name=='booking'%}
         <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/booking.css">
     {%elif page_name=='page'%}
@@ -78,6 +79,27 @@
 	<script type="text/javascript" src="/static/{{template_name}}/js/sticky.js"></script>
 	<script type="text/javascript" src="/static/{{template_name}}/assets/viewportchecker.js"></script>
 	<script type="text/javascript" src="/static/{{template_name}}/js/coreSlider.js"></script>
+    <!--slide-->
+    <script type="text/javascript">
+    $( document ).ready(function( $ ) {
+        $( '#example3' ).sliderPro({
+            width: 960,
+            height: 400,
+            fade: true,
+            arrows: true,
+            buttons: false,
+            fullScreen: true,
+            shuffle: true,
+            smallSize: 500,
+            mediumSize: 1000,
+            largeSize: 3000,
+            thumbnailArrows: true,
+            autoplay: false
+        });
+    });
+</script>
+    
+    <!--end slide-->
 </head>
 <body>
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">

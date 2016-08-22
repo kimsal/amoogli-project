@@ -1,5 +1,5 @@
 {% include template_name+'/header.html' %} 
-<section class="container-fluid section1 " id="section1">
+<section class="container-fluid section1 hidden-xs" id="section1">
     <div class="v-center no" style="height:20%;">
         <h1 class="text-center post">Join with TOURSANAK</h1>
         <h2 class="text-center lato animate slideInDown post">Happy<b>Smile</b>With Us</h2>
@@ -17,47 +17,51 @@
 
 <section class="container-fluid" id="section2">
     <div class="container ">
-    	{%for post in slide%}
-    	{%set arr_images=post.images.split("$$$$$")%}
-        <div class="row section-slide hidden-xs ">
-            <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 padding-overlay">
-				<!--slide-->
-				<div class="demo-1">
-		            <div id="example1" class="core-slider">
-		                <div class="core-slider_viewport">
-		                  <div class="core-slider_list">
-		                  	{%for image in arr_images%}
-		                    <div class="core-slider_item">
-		                    	<a href="/{{post.slug}}">
-		                    	<img src="/static/images/images/{{image}}" alt="">
-		                    	</a>
-		                    </div>
-		                    {%endfor%}
-		                  </div>
-		                </div>
-		                <div class="core-slider_nav">
-		                  <div class="core-slider_arrow core-slider_arrow__right"></div>
-		                  <div class="core-slider_arrow core-slider_arrow__left"></div>
-		                </div>
-		              <div class="core-slider_control-nav"></div>
-		        </div>
-		        </div>
-				<!--end slide-->
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-            	<div class="row">
-	            	<h1 class="my-mission">
-						{{post.title}}
-	            	</h1>
-	            </div>
-	            <div class="row">
-	            	<p class="desc">
-	            		{{post.short_description|safe|truncate(200)}}
-	            	</p>
-	            </div>
-            </div>
-        </div>
-        {%endfor%}
+    	<div class="row border">
+    		<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 slide-padding">
+    			<!--slide-->
+    			<div id="example3" class="slider-pro">
+					<div class="sp-slides">
+						<div class="sp-slide">
+							<img class="sp-image" src="../src/css/images/blank.gif" 
+								data-src="http://bqworks.com/slider-pro/images/image3_medium.jpg" 
+								data-small="http://bqworks.com/slider-pro/images/image3_small.jpg"
+								data-medium="http://bqworks.com/slider-pro/images/image3_medium.jpg"
+								data-large="http://bqworks.com/slider-pro/images/image3_large.jpg"
+								data-retina="http://bqworks.com/slider-pro/images/image3_large.jpg"/>
+						</div>
+						<div class="sp-slide">
+							<img class="sp-image" src="../src/css/images/blank.gif" 
+								data-src="http://bqworks.com/slider-pro/images/image9_medium.jpg" 
+								data-small="http://bqworks.com/slider-pro/images/image9_small.jpg"
+								data-medium="http://bqworks.com/slider-pro/images/image9_medium.jpg"
+								data-large="http://bqworks.com/slider-pro/images/image9_large.jpg"
+								data-retina="http://bqworks.com/slider-pro/images/image9_large.jpg"/>
+						</div>
+
+						<div class="sp-slide">
+							<img class="sp-image" src="../src/css/images/blank.gif" 
+								data-src="http://bqworks.com/slider-pro/images/image10_medium.jpg" 
+								data-small="http://bqworks.com/slider-pro/images/image10_small.jpg"
+								data-medium="http://bqworks.com/slider-pro/images/image10_medium.jpg"
+								data-large="http://bqworks.com/slider-pro/images/image10_large.jpg"
+								data-retina="http://bqworks.com/slider-pro/images/image10_large.jpg"/>
+						</div>
+					</div>
+			    </div>
+    			<!--end slide-->
+    		</div>
+    		<div class="col-xs-12 col-sm-3 col-lg-3 col-md-3">
+    			<h5 style="font-weight:200; padding-top:0px;">
+    			<strong>
+				CYCLING ADVENTURE TO COASTAL AREAS
+				</strong>
+    			</h5>
+    			<p style="font-size:19px; font-weight:200;">
+    				Discover the hidden beauty of Cambodia through cycling, Enjoy the nature, and explore the coastal regions 
+    			</p>
+    		</div>
+    	</div>
         <center>
         	<h1 class="row-space-1">TOUR</h1>
         </center>
