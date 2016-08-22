@@ -550,7 +550,7 @@ def admin_post_add(slug=""):
 	form.category_id.choices = categories
 	if request.method == 'POST':
 		try:
-			if form.validate() == False:
+			if form.validate() == True:
 		   		flash('Please try to fill form again.')
 		   		return redirect(url_for('admin_post_add'))
 		   	else:
