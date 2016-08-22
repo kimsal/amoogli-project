@@ -5,6 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/bootnav.css">
+    <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/color.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
     <script src="/static/admin/js/jquery.min.js"></script>
     {% if page_name == 'home' %}
         <style type="text/css">
@@ -53,6 +56,7 @@
 
     {%if page_name=="home"%}
 	   <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/index.css">
+       <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/slider-pro.min.css">
     {%elif page_name=='booking'%}
         <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/booking.css">
     {%elif page_name=='page'%}
@@ -73,45 +77,87 @@
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 	<!--Script start-->
 	<script type="text/javascript" src="/static/{{template_name}}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/{{template_name}}/js/bootsnav.js"></script>
 	<script type="text/javascript" src="/static/{{template_name}}/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/static/{{template_name}}/js/script.js"></script>
 	<script type="text/javascript" src="/static/{{template_name}}/js/sticky.js"></script>
 	<script type="text/javascript" src="/static/{{template_name}}/assets/viewportchecker.js"></script>
 	<script type="text/javascript" src="/static/{{template_name}}/js/coreSlider.js"></script>
+    <!--slide-->
+    <script type="text/javascript">
+    $( document ).ready(function( $ ) {
+        $( '#example3' ).sliderPro({
+            width: 960,
+            height: 400,
+            fade: true,
+            arrows: true,
+            buttons: false,
+            fullScreen: true,
+            shuffle: true,
+            smallSize: 500,
+            mediumSize: 1000,
+            largeSize: 3000,
+            thumbnailArrows: true,
+            autoplay: false
+        });
+    });
+</script>
+    
+    <!--end slide-->
 </head>
 <body>
-<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
-    <div class="container container-nav">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand " href="/">TOURSANAK</a>
+
+
+<!--navbar-->
+<nav class="navbar navbar-default bootsnav">
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i>
+                </span>
+            </div>
         </div>
-        <div class="navbar-collapse collapse" id="navbar-collapsible">
-            <ul class="nav navbar-nav navbar-left">
+    </div>
+    <!-- End Top Search -->
+    <div class="container">   
+        <!-- Start Atribute Navigation -->
+        <div class="attr-nav">
+            <ul>
+                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+            </ul>
+        </div>        
+        <!-- End Atribute Navigation --> 
+        <!-- Start Header Navigation -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand logo" href="#brand" style="color:#fff;padding-top:30px;font-weight:bold;">
+                TOURSANAK
+            </a>
+        </div>
+        <!-- End Header Navigation -->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                 <li><a href="/">Home</a></li>
-                {%for category in categories%}
-               	 <li><a href="/{{category.slug}}">{{category.name}}</a></li>
+                {%for category in categories%}                   
+                <li><a href="/{{category.slug}}">{{category.name}}</a></li>
                 {%endfor%}
                 {%for page in pages%}
-               	 <li><a href="/{{page.slug}}">{{page.title}}</a></li>
+                <li><a href="/{{page.slug}}">{{page.title}}</a></li>
                 {%endfor%}
                 <li>&nbsp;</li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form navbar-right" action="/search/" method="GET">
-	           		<div class="input-group">
-						<input class="form-control" placeholder="Search..." id="search" name="q" value="" type="text" required="">
-	                  	<div class="input-group-btn">
-	                    	<button type="submit" class="btn btn-success"><span  class="fa fa-search" aria-hidden="true"></span></button>
-	                  	</div>
-					</div>
-	            </form>
-            </ul>
-        </div>
-    </div>
+        </div><!-- /.navbar-collapse -->
+    </div>   
 </nav>
+<!--end navbar-->
+
+
+
+
