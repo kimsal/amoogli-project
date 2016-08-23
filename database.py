@@ -16,9 +16,6 @@ from datetime import datetime, timedelta
 from flask_mail import Mail,Message
 import random
 from apscheduler.scheduler import Scheduler
-
-
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://phos:phos@localhost:5432/toursanak'
 auth = HTTPTokenAuth(scheme='Token')

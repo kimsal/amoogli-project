@@ -620,6 +620,7 @@ def admin_post_add(slug=""):
 				   		for item in arr_to_remove:
 				   			images=images.replace(item,'')
 				   		images=images.replace('$$$$$$$$$$','$$$$$')
+				   		# return images
 				   		#end keep old images
 				   		# return old_images
 	   					obj.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],"category_id":request.form['category_id'],'feature_image':filename,'images':images,'price':request.form["price"],'short_description':request.form["short_description"],'map':request.form["map"] })
