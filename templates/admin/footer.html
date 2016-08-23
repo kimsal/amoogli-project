@@ -63,17 +63,10 @@
 				 * SUMMERNOTE EDITOR
 				 */			
 				$('.summernote').summernote({
-					height : 180,
+					height : 450,
 					focus : false,
 					tabsize : 2
-				});
-				/*
-				 * MARKDOWN EDITOR
-				 */
-				$("#mymarkdown").markdown({
-					autofocus:false,
-					savable:true
-				})		
+				});	
 			})
 		</script>
 <!--editor-->
@@ -81,10 +74,5 @@
 <script src="/static/admin/js/plugin/markdown/markdown.min.js"></script>
 <script src="/static/admin/js/plugin/markdown/to-markdown.min.js"></script>
 <script src="/static/admin/js/plugin/markdown/bootstrap-markdown.min.js"></script>
-<!--For editor-->
-<script type="text/javascript">
-  $("textarea.note-codeable").attr('name','description');
-  $("textarea.note-codeable").attr('id','description');
-</script>
 </body>
 </html>

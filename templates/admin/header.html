@@ -5,6 +5,9 @@
         <title> SmartAdmin </title>
         <meta name="description" content="">
         <meta name="author" content="">
+         <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -52,21 +55,16 @@
         <link rel="apple-touch-startup-image" href="/static/admin/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
         <link rel="apple-touch-startup-image" href="/static/admin/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
+        <!--these link for crop image only-->
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/style12.css" />
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/style-example.css" />
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/jquery.Jcrop.css" />
+        <!--custom crop image JS-->
+       <script type="text/javascript" src="/static/admin/js/jquer.Jcrop.js" ></script>
+       <script type="text/javascript" src="/static/admin/js/jquery.SimpleCropper.js"></script>
+    <!--end crop image-->
+
     </head>
-
-    <!-- #BODY -->
-    <!-- Possible Classes
-
-    * 'smart-skin-{SKIN#}'
-    * 'smart-rtl'         - Switch theme mode to RTL
-    * 'menu-on-top'       - Switch to top navigation (no DOM change required)
-    * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
-    * 'fixed-header'      - Fixes the header
-    * 'fixed-navigation'  - Fixes the main menu
-    * 'fixed-ribbon'      - Fixes breadcrumb
-    * 'fixed-footer'      - Fixes footer
-    * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
-    -->
     <body class="">
 
         <!-- HEADER -->
@@ -286,16 +284,11 @@
         <!-- END NAVIGATION -->
 
 <!--================================================== -->
-
-        <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <script>
             if (!window.jQuery) {
                 document.write('<script src="/static/admin/js/libs/jquery-2.0.2.min.js"><\/script>');
             }
         </script>
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <script>
             if (!window.jQuery.ui) {
                 document.write('<script src="/static/admin/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
