@@ -43,10 +43,6 @@ function loadImage(img_nom){
     });
   }
 
-
-  
-
-  
   var html='';
   var all_other_image=[];
   loadImage(1);
