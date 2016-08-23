@@ -41,6 +41,13 @@
   .upload-file {
     padding: 0px;
   }
+  .feature-img ,.img-1 {
+    border-radius: 3px;
+    border: solid thin gray;
+  }
+  .set-title {
+    font-weight: 300;
+  }
 </style>
 <script type="text/javascript">
   var img_no=0;
@@ -142,10 +149,10 @@
       <!-- end widget -->
     </article>
     <article class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-         <!--feature image-->
-         <div class="col-sm-12">
+        <!--feature image-->
+         <div class="col-sm-12 hidden-xs">
             <h4><b>
-              <center>Set feature image</center>
+              <center class="set-title">Set feature image</center>
             </b></h4>
          </div>
 
@@ -157,7 +164,7 @@
                </div>
               </div>
           </center>
-      </div>
+        </div>
       <script>
          // Init Simple Cropper
         $('.cropme').simpleCropper('feature_image','feature_image','txt_temp_image');
@@ -245,8 +252,20 @@
       <!--end feature image-->
   </form>
 </div>
-
-
+<div class="col-xs-12 hidden-sm hidden-md ">
+  <div class="col-sm-12 col-lg-12 col-md-12">
+    <div class="btn-group pull-right btnsub">         
+      <button class="btn btn-sm btn-primary" type="reset">
+        <i class="fa fa-times"></i> Cancel
+      </button>          
+    </div>
+    <div class="btn-group pull-right btnsub">   
+      <button class="btn btn-sm btn-success btn-save" type="submit">
+        <i class="fa fa-check"></i> Save
+      </button>    
+    </div>
+  </div>
+</div>
 <!-- PAGE RELATED PLUGIN(S) EDITOR -->
 <script src="/static/admin/js/plugin/summernote/summernote.min.js"></script>
 <script src="/static/admin/js/plugin/markdown/markdown.min.js"></script>
@@ -264,7 +283,7 @@
   if(feature_image==''){
     feature_image='/static/images/no image.jpg';
    }
-   $("#landscape").html('<img src="'+feature_image+'" style="width:200px;height:150px" class="img-responsive"/> ');
+   $("#landscape").html('<img src="'+feature_image+'" class="img-responsive feature-img"/> ');
 </script>
 <script type="text/javascript">
 $("#price").keydown(function (e) {
