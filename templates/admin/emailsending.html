@@ -13,7 +13,7 @@
 
         <!-- breadcrumb -->
         <ol class="breadcrumb">
-          <li>Home</li><li>Inbox</li>
+          <li>Dashboard</li><li>Sending</li>
         </ol>
         <!-- end breadcrumb -->
 
@@ -62,17 +62,7 @@
         
           </div>
           <div class="btn-group inbox-paging">
-            <form id="frm" role="form" action="/admin/email/group/" method="POST">
-              <div class="col-md-10">
-                <input class="form-control" name="name" placeholder="Group ..." type="text" required value="">
-              </div>
-              <div class="col-md-2">
-                <button class="btn btn-primary" placeholder="Group ..." type="submit">
-                <i class="fa fa-plus"></i> &nbsp;
-                Save&nbsp;
-                </button>
-              </div>
-            </form>
+           
           </div>
         </div>
         
@@ -139,12 +129,12 @@
                   </td>
                   <td class="inbox-data-from">
                     <div>
-                        <b>Group Name</b>
+                        <b>Name</b>
                     </div>
                   </td>
                   <td class="inbox-data-date hidden-xs">
                     <div>
-                       <b>Created date</b>
+                       <b>Email</b>
                     </div>
                   </td>
                    <td class="inbox-data-date">
@@ -153,7 +143,7 @@
                     </div>
                   </td>
                 </tr>
-                {%for group in groups%}
+                {%for email in sendnigEmails%}
                 <tr id="msg29">
                   <td class="inbox-table-icon">
                     <div class="checkbox">
@@ -164,19 +154,19 @@
                   </td>
                   <td class="inbox-data-from">
                     <div>
-                      <a class="name" href="/admin/email/group/{{group.name}}/edit/">
-                        {{group.name}}
+                      <a class="name" href="#">
+                        {{email.name}}
                       </a>
                     </div>
                   </td>
                   <td class="inbox-data-date hidden-xs">
                     <div>
-                       {{group.published_at.strftime('%d-%h-%Y')}}
+                       {{email.email}}
                     </div>
                   </td>
                    <td class="inbox-data-date">
                     <div>
-                       <a href="/admin/email/group/{{group.name}}/delete/" style="color:gray;" onclick="return confirm('Are you sure ?')">
+                       <a href="/admin/email/sending/{{email.id}}/delete/" style="color:gray;" onclick="return confirm('Are you sure ?')">
                         <i class="fa fa-trash-o" aria-hidden="true">
                           
                         </i>
