@@ -904,6 +904,11 @@ def verify_email():
 			return render_template('admin/verify-email.html')
 			return "We couldn't find this email."
 ###########SEND MAIL##############
+@app.route('/admin/email/sending', methods = ['GET', 'POST'])
+@app.route('/admin/email/sending/', methods = ['GET', 'POST'])
+def sendingList():
+	sendnigEmails = EmailList.query.all()
+	return render_template('/admin/emailsending.html',sendnigEmails=sendnigEmails)
 @app.route('/admin/email/group', methods = ['GET', 'POST'])
 @app.route('/admin/email/group/', methods = ['GET', 'POST'])
 # @app.route('/admin/email/group/<slug>', methods = ['GET', 'POST'])
@@ -915,9 +920,10 @@ def admin_mail_group(slug='',action=''):
 	#slug is group name
 	form = GroupForm()
 	groups=Group.query.order_by(Group.published_at.desc()).all()
+	email_to_send = EmailList.query.count()
 	if slug=='':
 		if request.method=="GET":
-			return render_template("admin/form/mailgroup.html",name=slug,form=form,groups=groups)
+			return render_template("admin/form/mailgroup.html",email_to_send=email_to_send,name=slug,form=form,groups=groups)
 		else:
 			try:
 				name = request.form['name']
@@ -936,7 +942,7 @@ def admin_mail_group(slug='',action=''):
 		#edit or delete
 		if action=="edit":
 			if request.method=="GET":
-				return render_template("admin/form/mailgroup.html",form=form,groups=groups,name=slug)
+				return render_template("admin/form/mailgroup.html",email_to_send=email_to_send,form=form,groups=groups,name=slug)
 			else:
 				try:
 					obj=Group.query.filter_by(name=slug)
