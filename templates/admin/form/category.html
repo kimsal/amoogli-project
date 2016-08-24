@@ -40,7 +40,7 @@
           <!-- Widget ID (each widget will need unique ID)-->
           <div class="jarviswidget jarviswidget-color-greenDark" id="wid-id-18" data-widget-colorbutton="false" data-widget-editbutton="false">
             <header>
-              <h2><strong>Category</strong> <i>Page</i></h2>       
+              <p style="margin:7px;"><strong>Category</strong> <i>Page</i></p>       
               
             </header>
 
@@ -106,10 +106,16 @@
                             </a>
                           </td>
                         
-                        <td>{{category.is_menu}}</td>
                         <td>
-                         <a title="Delete" href="/admin/category/delete/{{category.slug}}" style="color:red;">
-                          <span class="fa fa-trash-o btn-circle btn-warning" aria-hidden="true"  onclick='return confirm(\"Are you sure ?\")'>
+                          {%if category.is_menu==1%}
+                            Yes
+                          {%else%}
+                            No
+                           {%endif%}
+                        </td>
+                        <td>
+                         <a title="Delete" href="/admin/category/delete/{{category.slug}}" style="color:red;" onclick='return confirm("Are you sure ?")'> 
+                          <span class="fa fa-trash-o btn-circle btn-warning" aria-hidden="true">
                           </span>
                         </td>
                       </tr>

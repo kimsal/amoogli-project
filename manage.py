@@ -904,9 +904,19 @@ def verify_email():
 			return render_template('admin/verify-email.html')
 			return "We couldn't find this email."
 ###########SEND MAIL##############
-@app.route('/admin/email/sending', methods = ['GET', 'POST'])
-@app.route('/admin/email/sending/', methods = ['GET', 'POST'])
-def sendingList():
+@app.route('/admin/email/sending')
+@app.route('/admin/email/sending/')
+@app.route('/admin/email/sending/<id>/<action>')
+@app.route('/admin/email/sending/<id>/<action>/')
+def sendingList(id=0,action='none'):
+	
+	if action=='delete':
+		obj=EmailList.query.filter_by(id=id).first()
+		status = EmailList.delete(obj)
+		if not status:
+			flash("Email deleted from sending list successfully")
+		else:
+			flash("Error in deleting email from sending list !")
 	sendnigEmails = EmailList.query.all()
 	return render_template('/admin/emailsending.html',sendnigEmails=sendnigEmails)
 @app.route('/admin/email/group', methods = ['GET', 'POST'])
