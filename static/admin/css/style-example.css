@@ -14,7 +14,7 @@
 h1{
   display         : block;
   font-family     : arial;
-  font-size       : 35px;
+ /* font-size       : 35px;*/
   color           : #39acac;
   margin-bottom   : 20px;
   margin-top      : 20px;
