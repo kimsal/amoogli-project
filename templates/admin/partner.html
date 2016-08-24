@@ -27,14 +27,30 @@
 
 			<!-- MAIN CONTENT -->
 			<div id="content">
+				<div class="row">
+			          <a href="/admin/partner/add" class="btn btn-default pull-right btn-add" >
+			            <span class="fa fa-plus-circle" aria-hidden="true"></span>
+			            New
+			          </a>
+			          <!-- col -->
+			          <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+			            <h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> Page</h1>
+			          </div>
+			          <!-- end col -->
 
+			          <!-- right side of the page with the sparkline graphs -->
+			          <!-- col -->
+			          <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+			            <!-- sparks -->
+			            
+			            <!-- end sparks -->
+			          </div>
+			          <!-- end col -->
+			        </div>
 				<!-- row -->
 				<div class="row">
 
 					<!-- col -->
-					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-						<h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> partner</h1>
-					</div>
 					 {% with messages = get_flashed_messages() %}
                       {% if messages %}
                         {% for message in messages %}
@@ -161,7 +177,7 @@
 		 {% for partner in partners %}
 		 <script type="text/javascript">
 		 	temp=moment().from("{{partner.published_at}}");
-		 	jqgrid_data.push({"name":"{{partner.name}}'","url":"{{partner.url}}'","image":"<img src='/static/images/images/{{partner.feature_image}}' style='width:50px;'/>","published_at":temp,"action":"<a href='/admin/partner/delete/{{partner.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a> <a href='/admin/partner/edit/{{partner.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
+		 	jqgrid_data.push({"name":"{{partner.name}}","url":"{{partner.url}}","image":"<img src='{{partner.feature_image}}' style='width:50px;'/>","published_at":temp,"action":"<a href='/admin/partner/delete/{{partner.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a> <a href='/admin/partner/edit/{{partner.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
 		 </script>
 		 {%endfor%}
 

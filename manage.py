@@ -312,7 +312,8 @@ def admin_booking(pagination=1,action='',name=''):
 def admin_contact(pagination=1,action='',firstname=''):
 	if action=='delete':		
 		try:
-			contact=Contact.query.filter_by(firstname=firstname).first()
+			#id = firstname
+			contact=Contact.query.filter_by(id=firstname).first()
 			status = Contact.delete(contact)
 			flash('Contact info deleted successful.')
 			return redirect(url_for('admin_contact'))
@@ -550,7 +551,7 @@ def admin_post_add(slug=""):
 	form.category_id.choices = categories
 	if request.method == 'POST':
 		try:
-			if form.validate() == True:
+			if form.validate() == False:
 		   		flash('Please try to fill form again.')
 		   		return redirect(url_for('admin_post_add'))
 		   	else:

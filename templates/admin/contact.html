@@ -165,7 +165,7 @@
 		 {% for contact in contacts %}
 		 <script type="text/javascript">
 		 	temp=moment().from("{{contact.published_at}}");
-		 	jqgrid_data.push({"firstname":"{{contact.firstname}}'","lastname":"{{contact.lastname}}'","email":"{{contact.email}}","published_at":temp,"action":"<a href='/admin/contact/delete/{{contact.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>"});
+		 	jqgrid_data.push({"firstname":"{{contact.id}}'","lastname":"{{contact.lastname}}'","email":"{{contact.email}}","published_at":temp,"action":"<a href='/admin/contact/delete/{{contact.id}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>"});
 		 </script>
 		 {%endfor%}
 
