@@ -6,6 +6,18 @@
 .fa-search {
     color: #fff;
 }
+.navbar-default .navbar-brand {
+    color: #F6F6F6;
+}
+@media screen and (max-width: 800px) {
+    .logo {
+        padding-top: 30px;
+    }
+}
+nav.navbar.bootsnav ul.nav > li > a:hover {
+    color: #e3d6d6;
+    background-color: transparent !important;
+}
 /* MEGAMENU STYLE
 =================================*/
 nav.bootsnav .dropdown.megamenu-fw {

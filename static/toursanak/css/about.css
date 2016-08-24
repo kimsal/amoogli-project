@@ -12,7 +12,7 @@ html,body {
 	width                 :100%;
 	height                : auto;
 	background-color      : green;
-	margin-top            : 50px;
+	margin-top            : 0px;
 }
 .bg-overlay {
     background            : linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.3)), url("../image/1.jpg");

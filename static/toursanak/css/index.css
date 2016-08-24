@@ -7,12 +7,10 @@ html,body {
     color                 : #444;
     font-family           : 'Lato', sans-serif;
 }
+
 @media (min-width:768px) {
     h1 {
         font-size         : 68px;
-    }
-    p {
-    margin: 0px 10px 10px;
     }
 }
 @media (max-width: 700px) {
