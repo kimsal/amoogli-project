@@ -17,10 +17,10 @@
 
         <!-- row -->
         <div class="row">
-          <button class="btn btn-default pull-right btn-add" >
+          <a href='/admin/event/add' class="btn btn-default pull-right btn-add" >
             <span class="fa fa-plus-circle" aria-hidden="true"></span>
             New
-          </button>
+          </a>
           <!-- col -->
           <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
             <h1 class="page-title txt-color-blueDark"><!-- PAGE HEADER --><i class="fa-fw fa fa-home"></i> event</h1>
@@ -157,7 +157,7 @@
      {% for event in events %}
      <script type="text/javascript">
       temp=moment().from("{{event.published_at}}");
-      jqgrid_data.push({"title":"<a href='/admin/event/edit/{{event.id}}'>{{event.title}}</a>","published_at":temp,"view":"{{event.views}}","action":"<a href='/admin/event/delete/{{event.id}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/event/edit/{{event.id}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
+      jqgrid_data.push({"title":"<a href='/admin/event/edit/{{event.slug}}'>{{event.title}}</a>",'date':"{{event.date}}","published_at":temp,"view":"{{event.views}}","action":"<a href='/admin/event/delete/{{event.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/event/edit/{{event.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
      </script>
      {%endfor%}
 
@@ -168,10 +168,14 @@
         jQuery("#jqgrid").jqGrid({
           data : jqgrid_data,
           datatype : "local",
-          colNames : ['Title','Published', 'Views','Actions'],
+          colNames : ['Title','Date','Published', 'Views','Actions'],
           colModel : [{
             name : 'title',
             index : 'title',
+            editable : false
+          }, {
+            name : 'date',
+            index : 'date',
             editable : false
           }, {
             name : 'published_at',

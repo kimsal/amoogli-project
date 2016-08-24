@@ -19,7 +19,7 @@ class CategoryForm(Form):
    name = TextField("Name",[validators.Required("Please enter category name.")])
 class PageForm(Form,CKEditor):
 	title = TextField("Title",[validators.Required("Please enter your title.")])
-	description = TextAreaField("Description",[validators.Required("Please enter your description.")])
+	description = TextAreaField("Description",[])
 class UserMemberForm(Form):
    name = TextField("Name",[validators.Required("Please enter your name.")])
    email = TextField("Email",[validators.Required("Please enter your email.")])

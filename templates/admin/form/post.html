@@ -47,6 +47,15 @@
   }
   .set-title {
     font-weight: 300;
+    background-color: #79aec8;
+    padding:7px;
+    border-radius: 3px;
+    color:white;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  .set-title:hover{
+    background-color:#79aec8;
   }
 </style>
 <script type="text/javascript">
@@ -91,6 +100,7 @@
         </div>
 <!-- END RIBBON -->
   <form class="form-horizontal" action="/admin/post/add/" method="POST" id="frm" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
   <textarea name="description" id="description" style="display:none;"></textarea> 
   <input type="text" value="" name="all_removed_images" style="display:none;" />
    <input type="text" name="txt_temp_image" class="txt_temp_image" value="" style="display:none"/>
@@ -151,9 +161,9 @@
     </article>
     <article class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
         <!--feature image-->
-         <div class="col-sm-12 hidden-xs">
-            <h4><b>
-              <center class="set-title">Set feature image</center>
+         <div class="col-sm-12">
+            <h4 style="height:60px;font-weight:bold;"><b>
+              <center class="set-title"><b>Feature image</b></center>
             </b></h4>
          </div>
 
@@ -175,19 +185,6 @@
           $('#portrait').toggle();
           $('#landscape').toggle();
         });    
-
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-36251023-1']);
-        _gaq.push(['_setDomainName', 'jqueryscript.net']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-
       </script>
         <!--end feature image-->
     </article>
@@ -250,33 +247,28 @@
           </div>
           </div>
         </div>
+    </article>
       <!--end feature image-->
   </form>
 </div>
+<div style="height:10px;"></div>
 <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
-  <div class="col-sm-12 col-lg-12 col-md-12">
-    <div class="btn-group pull-right btnsub">         
-      <button class="btn btn-sm btn-primary" type="reset">
-        <i class="fa fa-times"></i> Cancel
-      </button>          
+  <center>
+    <div class="col-sm-12 col-lg-12 col-md-12">
+      <div class="btn-group btnsub">         
+        <button class="btn btn-sm btn-primary" type="reset">
+          <i class="fa fa-times"></i> Cancel
+        </button>          
+      </div>
+      <div class="btn-group btnsub">   
+        <button class="btn btn-sm btn-success btn-save" type="submit">
+          <i class="fa fa-check"></i> Save
+        </button>    
+      </div>
     </div>
-    <div class="btn-group pull-right btnsub">   
-      <button class="btn btn-sm btn-success btn-save" type="submit">
-        <i class="fa fa-check"></i> Save
-      </button>    
-    </div>
-  </div>
+  </center>
 </div>
-<!-- PAGE RELATED PLUGIN(S) EDITOR -->
-<script src="/static/admin/js/plugin/summernote/summernote.min.js"></script>
-<script src="/static/admin/js/plugin/markdown/markdown.min.js"></script>
-<script src="/static/admin/js/plugin/markdown/to-markdown.min.js"></script>
-<script src="/static/admin/js/plugin/markdown/bootstrap-markdown.min.js"></script>
-<script>
-  if (!window.jQuery.ui) {
-    document.write('<script src="/static/admin/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-  }
-</script>
+
 <script type="text/javascript" src="/static/admin/js/addMoreImage.js"></script>
 <div class="col-sm-12" style="height:100px;"></div>
   
@@ -335,5 +327,7 @@ $(".btn-save").click(function(){
      $("#price").attr('value',"{{p.price}}");
      $("#map").html("{{p.map}}");
   });
+  //Don't display button browse for feature image
+  $('input#feature_image[name="feature_image"]').css('display','none');
  </script>
 {% endfor %}
