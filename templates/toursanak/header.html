@@ -3,18 +3,15 @@
 <head>
     <link rel="icon" type="image/png" href="/static/{{template_name}}/image/logo.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/bootnav.css">
 	<link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/bootnav.css">
+    
     <link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/color.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
     <script src="/static/admin/js/jquery.min.js"></script>
     {% if page_name == 'home' %}
-        <style type="text/css">
-         html,body{
-            background: center no-repeat fixed url('/static/{{template_name}}/image/Toursanak-Cambodia-Tour.jpg');
-         }   
-        </style>
+
         <title>Toursanak Cambodia Tour</title>
         <meta name="description" content="toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,book tour,visiting,angkor wat,asean tour, best tour in the world">
         <meta name="keywords" content="toursanak,tour,khmer,guide,visit,angkor,siemreab,Cambodia,book tour,visiting,angkor wat,asean tour, best tour in the world">
@@ -104,6 +101,21 @@
 </script>
     
     <!--end slide-->
+    <style type="text/css">
+         html,body{
+            background: center no-repeat fixed url('/static/{{template_name}}/image/Toursanak-Cambodia-Tour.jpg');
+         }
+         .navbar-brand {
+            padding-top: 30px;
+            
+         }   
+
+         @media screen and (max-width: 1000px) {
+            .navbar-brand {
+                padding-top: 20px;
+            }
+         }
+        </style>
 </head>
 <body>
 
@@ -135,7 +147,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand logo" href="#brand" style="color:#fff;padding-top:30px;font-weight:bold;">
+            <a style="color:white;" class="navbar-brand logo" href="/">
                 TOURSANAK
             </a>
         </div>
