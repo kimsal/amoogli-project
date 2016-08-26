@@ -968,6 +968,9 @@ def admin_mail_group(slug='',action=''):
 				except Exception as e:
 					flash(e.message)
 					return redirect(url_for("admin_mail_group"))
+		elif action=='view':
+			allEmailsInGroup = 'Emailgroup.query.all()'
+			return render_template("admin/form/emailInGroup.html",allEmailsInGroup=allEmailsInGroup)
 		else:
 			#delete group
 			try:
@@ -1105,7 +1108,7 @@ def admin_email():
 				for t in tmp:
 					#add to email list to send 
 					try:
-						help=EmailList.query.filter_by(email=t.email).first()
+						help=EmailList.query.filter_by(email=t.email)
 						if help.count()<=0:
 							temp_object=EmailList(t.name,t.email)
 							EmailList.add(temp_object)
@@ -1113,10 +1116,11 @@ def admin_email():
 							print "Email already exists."
 					except Exception as e:
 						print e.message
+		email_to_send = EmailList.query.count()
 		sched.add_interval_job(sendEmail, seconds=5)
 		sched.start()
 		flash("Your Email will be sent successfully.")
-		return redirect(url_for("admin_email"))
+		return render_template("admin/form/sendmail.html",email_to_send=email_to_send,groups=groups)
 @app.route('/admin/earn')
 @app.route('/admin/earn/')
 def admin_earn():

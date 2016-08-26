@@ -169,7 +169,7 @@
                   </td>
                   <td class="inbox-data-from">
                     <div>
-                      <a class="name" href="/admin/email/group/{{group.name}}/edit/">
+                      <a class="name" href="/admin/email/group/{{group.id}}/view/" title="View members">
                         {{group.name}}
                       </a>
                     </div>
@@ -181,11 +181,15 @@
                   </td>
                    <td class="inbox-data-date">
                     <div>
-                       <a href="/admin/mail/{{group.id}}/delete/" style="color:gray;" onclick="return confirm('Are you sure ?')">
+                       <a href="/admin/email/group/{{group.name}}/delete/" style="color:gray;" onclick="return confirm('Are you sure ?')" title="Delete">
                         <i class="fa fa-trash-o" aria-hidden="true">
                           
                         </i>
                       </a>
+                      <a class="name" href="/admin/email/group/{{group.name}}/edit/" style="margin-left:10px;" title="Edit">
+                         <i class="fa fa-edit" aria-hidden="true">
+                          </i>
+                       </a>
                     </div>
                   </td>
                 </tr>

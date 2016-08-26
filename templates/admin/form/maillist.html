@@ -1,7 +1,45 @@
 {% include 'admin/header.html' %}
+<script type="text/javascript">
+  var temp;
+  function addEmailGroup(email_id,group_id){
+    var dt=[];
+    dt[0]=parseInt(email_id);
+    dt[1]=parseInt(group_id);
+    $.ajax({
+         type: "POST",
+         async: false,
+         url: "/admin/checkemail/"+email_id+"/"+group_id+"/add",
+         data: {json_str:JSON.stringify(dt)},
+         success: function(msg){
+          console.log('add success:'+msg);
+         },
+         error:function(msg){
+          console.log(msg+"");
+         }
+         // dataType: "json"
+      });
+  }
+  function removeEmailGroup(email_id,group_id){
+    var dt=[];
+    dt[0]=parseInt(email_id);
+    dt[1]=parseInt(group_id);
+    $.ajax({
+         type: "POST",
+         async: false,
+         url: "/admin/checkemail/"+email_id+"/"+group_id+"/remove",
+         data: {json_str:JSON.stringify(dt)},
+         success: function(msg){
+          console.log('remove success:'+msg);
+         },
+         error:function(msg){
+          console.log(msg+"");
+         }
+         // dataType: "json"
+      });
+  }
+</script>
    <!-- MAIN PANEL -->
     <div id="main" role="main">
-
       <!-- RIBBON -->
       <div id="ribbon">
 
@@ -182,7 +220,7 @@
                   </td>
                   <td class="inbox-data-from">
                     <div>
-                      <a class="name" href="/admin/mail/{{email.id}}/edit/">
+                      <a href="#" title="view" data-toggle="modal" data-target="#myModal_{{email.id}}">
                         {{email.name}}
                       </a>
                     </div>
@@ -204,37 +242,124 @@
                           
                         </i>
                       </a>
+                       <a class="name" href="/admin/mail/{{email.id}}/edit/" style="margin-left:10px;">
+                         <i class="fa fa-edit" aria-hidden="true">
+                          </i>
+                       </a>
                     </div>
                   </td>
                 </tr>
-              {%endfor%}
+
+
+                <!-- pop up modal group email-->
+            <div class="modal" id="myModal_{{email.id}}" role="dialog">
+                <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <label><b>{{email.name}} </b> &nbsp; - {{email.email}}</label><br>
+                      
+                    </div>
+                    <div class="modal-body">
+                        <form>
+
+                          {%for group in groups%}
+                            <div class="checkbox groups group_{{group.id}}">
+                            <h5>
+                            <label><input type="checkbox" name="groups" id="group_{{group.id}}" value="{{group.id}}" class="group_{{email.id}}">
+                              {{group.name}}
+                            </label>
+                            </h5>
+                          </div>
+                        <script type="text/javascript">
+                          //Tick check box
+                          $.ajax({
+                           type: "GET",
+                           async: false,
+                           url: "/admin/checkemail/{{email.id}}/{{group.id}}/check",
+                           success: function(msg){
+                            if(msg.status==true){
+                              $('.group_{{email.id}}[value="{{group.id}}"]').attr("checked", true);
+                            }
+                            },
+                           error:function(msg){
+                            console.log(msg);
+                           }
+                       });
+                        </script>
+                            {%endfor%}
+
+                            <button class="btn btn-info pull-right btn_{{email.id}}" style="margin-top:-20px;" type="button">Save</button>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!--end pop up modal group email-->
+
+              <script type="text/javascript">
+              var group_id;
+              $(".btn_{{email.id}}").click(function(){
+                $(".group_{{email.id}}").each(function(){
+                  group_id=$(this).val();
+                  if($(this).is(':checked'))
+                    {
+                      //check if not save then save new in emailgroup
+                      $.ajax({
+                           type: "GET",
+                           async: false,
+                           url: "/admin/checkemail/{{email.id}}/"+group_id+"/check",
+                           success: function(msg){
+                            console.log('>>>>'+msg.status);
+                            if(msg.status==false){
+                              //not exists then save new
+                              addEmailGroup("{{email.id}}",group_id);
+
+                            }
+                            },
+                           error:function(msg){
+                            console.log(msg);
+                           }
+                       });
+                  }
+                  else{
+                    //check if already save then remove it
+                    $.ajax({
+                         type: "GET",
+                         async: false,
+                         url: "/admin/checkemail/{{email.id}}/"+group_id+"/check",
+                         success: function(msg){
+                          console.log(msg.status);
+                          if(msg.status==true){
+                            //not exists then save new
+                            removeEmailGroup("{{email.id}}",group_id);
+
+                          }
+                          },
+                         error:function(msg){
+                          console.log(msg);
+                         }
+                         // dataType: "json"
+                      });
+                  }
+                });
+                $(".close").click();
+              });
+            </script>
+            {%endfor%}
               </tbody>
             </table>
-
-           
             </div>
-        
           <!-- </div> -->
-        
           <div class="inbox-footer">
         
             <div class="row">
         
-              <div class="col-xs-6 col-sm-1">
-        
-                <div class="txt-color-white hidden-desktop visible-mobile">
-                  3.5GB of <strong>10GB</strong>
-        
-                  <div class="progress progress-micro">
-                    <div class="progress-bar progress-primary" style="width: 34%;"></div>
-                  </div>
-                </div>
-              </div>
+              
         
               <div class="col-xs-6 col-sm-11 text-right">
-                <div class="txt-color-white inline-block">
-                  <i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> 52 mins ago |</i> Displaying <strong>44 of 259</strong>
-                </div>
+               
               </div>
         
             </div>

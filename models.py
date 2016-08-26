@@ -216,6 +216,7 @@ class Email(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255),unique=True)
     name  = db.Column(db.String(255),nullable=True)
+    emailgroups=db.relationship('Emailgroup', backref="email", lazy='dynamic')
     published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
     def __str__(self):
         return self.name
@@ -238,6 +239,7 @@ class Email(db.Model):
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name  = db.Column(db.String(255))
+    emailgroups = db.relationship('Emailgroup', backref="group", lazy='dynamic')
     published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
     def __str__(self):
         return self.name
@@ -257,8 +259,8 @@ class Group(db.Model):
         return db.session.commit()
 class Emailgroup(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email_id  = db.Column(db.Integer)
-    group_id  = db.Column(db.Integer)
+    email_id  = db.Column(db.Integer,db.ForeignKey('Email.id'),nullable=True)
+    group_id  = db.Column(db.Integer,db.ForeignKey("Group.id"),nullable=True)
     published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
     def __str__(self):
         return self.email_id

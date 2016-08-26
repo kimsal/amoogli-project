@@ -17,7 +17,7 @@ from flask_mail import Mail,Message
 import random
 from apscheduler.scheduler import Scheduler
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://blog:blog@localhost:5432/toursanak'
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://blog:blog@localhost:5432/toursanak1'
 auth = HTTPTokenAuth(scheme='Token')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=True
 app.secret_key = 'Hello@AmokCamSmallworld$Cambodia&*&'

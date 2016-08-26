@@ -110,7 +110,17 @@
           <!-- LOADING compose box -->
              <div style="height: auto; opacity: 1;" class="table-wrap custom-scroll animated fast fadeInRight"><h2 class="email-open-header">
               Compose New Email <span class="label txt-color-white">DRAFT</span>
-             
+              {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                     {% for message in messages %}
+                      <tr id="msg29">
+                        <div class="col-md-12 col-xs-12 alert">
+                          {{ message }}
+                        </div>
+                       </tr>
+                   {% endfor %}
+                  {% endif %}
+                 {% endwith %}
             </h2>
             <!--form email write-->
             <form action="/admin/email/" method="POST" id="frm" enctype="multipart/form-data" id="email-compose-form">
@@ -119,10 +129,10 @@
               <!--End help form-->
               <div class="inbox-info-bar no-padding">
                 <div class="row">
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label class="control-label col-md-1"><strong>To</strong></label>
                     <div class="col-md-11">
-                    <!-- <input type="text" name="to" style="width:100%;height:100%;border:none;"> -->
+                    <input type="text" name="to" style="width:100%;height:100%;border:none;">
 
                       <select multiple style="width:100%" class="select2" data-select-search="true">
                         <option value="sunny.orlaf@smartadmin.com">sadi.orlaf@smartadmin.com</option>
@@ -134,7 +144,7 @@
                         <option value="IT@smartadmin.com">IT@smartadmin.com</option>
                       </select>
                     </div>
-                  </div>
+                  </div> -->
                 </div>  
               </div>
               
@@ -144,7 +154,7 @@
               <div class="inbox-info-bar no-padding">
                 <div class="row">
                   <div class="form-group">
-                    <label class="control-label col-md-1"><strong>Subject</strong></label>
+                    <label class="control-label col-md-1"><strong><!-- Subject --></strong></label>
                     <div class="col-md-11">
                       <input class="form-control" placeholder="Email Subject" type="text" name="subject" id="subject">
                       
@@ -156,7 +166,7 @@
               
                 <div id="emailbody">
                   
-                    <br><br><br><br><br>Thanks,<br><strong>Amoogli Team</strong><br><br><small><!-- CEO - Amoogli  --><br> No. 17, St. 604, 12152 Phnom Penh<br><i class="fa fa-phone"> (855) 77 504 106</i></small><br><img src="/static/admin/img/logo-blacknwhite.png" height="20" width="auto" style="margin-top:7px; padding-right:9px; border-right:1px dotted #9B9B9B;" />    
+                    <br><br><br><br><br>Thanks,<br><strong>Amoogli Team</strong><br><br><small><!-- CEO - Amoogli  --><br> No. 17, St. 604, 12152 Phnom Penh<br><i class="fa fa-phone"> (855) 77 504 106</i></small><br><img src="{{request.url_root}}static/admin/img/logo-blacknwhite.png" height="20" width="auto" style="margin-top:7px; padding-right:9px; border-right:1px dotted #9B9B9B;" />    
                 </div>  
               </div>
               
@@ -181,7 +191,6 @@
                           //remove from sending box
                           help=true;
                         }
-                        alert(value);
                       });
                     </script>
                     {%endfor%}
@@ -201,7 +210,10 @@
             </form>
       <script type="text/javascript">
         $(".btn-send").click(function(){
-          $('textarea[name="description"]').html($("div.note-editable.custom-scroll").html());
+          var temp=$("div.note-editable.custom-scroll").html();
+          $('textarea[name="description"]').html(temp);
+          // alert(temp);
+          // return false;
         });
       </script>
             <!--end form email write -->
