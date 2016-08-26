@@ -47,6 +47,9 @@
                   <a href="/admin/email/group">Group</a>
                 </li>
                 <li>
+                  <a href="/admin/mail">Mail</a>
+                </li>
+                <li>
                   <a href="/admin/email/sending">Sending</a>
                 </li>
               </ul>
@@ -54,10 +57,7 @@
           </h1>
           <div class="inbox-checkbox-triggered">
         
-            <div class="btn-group">
-             <!--  <a href="javascript:void(0);" rel="tooltip" title="" data-placement="bottom" data-original-title="Mark Important" class="btn btn-default"><strong><i class="fa fa-exclamation fa-lg text-danger"></i></strong></a>
-              <a href="javascript:void(0);" rel="tooltip" title="" data-placement="bottom" data-original-title="Move to folder" class="btn btn-default"><strong><i class="fa fa-folder-open fa-lg"></i></strong></a>
-              <a href="javascript:void(0);" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete" class="deletebutton btn btn-default"><strong><i class="fa fa-trash-o fa-lg"></i></strong></a> -->
+            <div class="btn-group"> 
             </div>
         
           </div>
@@ -85,6 +85,11 @@
             <ul class="inbox-menu-lg">
               <li class="active">
                 <a class="inbox-load" href="/admin/email/group/"> Group </a>
+              </li>
+            </ul>
+            <ul class="inbox-menu-lg">
+              <li class="active">
+                <a class="inbox-load" href="/admin/mail/"> Mail </a>
               </li>
             </ul>
             <ul class="inbox-menu-lg">
@@ -176,7 +181,7 @@
                   </td>
                    <td class="inbox-data-date">
                     <div>
-                       <a href="/admin/email/group/{{group.name}}/delete/" style="color:gray;" onclick="return confirm('Are you sure ?')">
+                       <a href="/admin/mail/{{group.id}}/delete/" style="color:gray;" onclick="return confirm('Are you sure ?')">
                         <i class="fa fa-trash-o" aria-hidden="true">
                           
                         </i>

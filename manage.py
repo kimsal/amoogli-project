@@ -909,7 +909,7 @@ def verify_email():
 @app.route('/admin/email/sending/<id>/<action>')
 @app.route('/admin/email/sending/<id>/<action>/')
 def sendingList(id=0,action='none'):
-	
+	email_to_send = EmailList.query.count()
 	if action=='delete':
 		obj=EmailList.query.filter_by(id=id).first()
 		status = EmailList.delete(obj)
@@ -918,7 +918,7 @@ def sendingList(id=0,action='none'):
 		else:
 			flash("Error in deleting email from sending list !")
 	sendnigEmails = EmailList.query.all()
-	return render_template('/admin/emailsending.html',sendnigEmails=sendnigEmails)
+	return render_template('/admin/emailsending.html',email_to_send=email_to_send,sendnigEmails=sendnigEmails)
 @app.route('/admin/email/group', methods = ['GET', 'POST'])
 @app.route('/admin/email/group/', methods = ['GET', 'POST'])
 # @app.route('/admin/email/group/<slug>', methods = ['GET', 'POST'])
@@ -982,14 +982,47 @@ def admin_mail_group(slug='',action=''):
 			except Exception as e:
 				flash(e.message)
 				return redirect(url_for('admin_mail_group'))
+@app.route('/admin/mail/<id>/group/', methods = ['GET', 'POST'])
+@app.route('/admin/mail/<id>/group', methods = ['GET', 'POST'])
+def getEmailByGroupId(id):
+	emails = Emailgroup.query.join(Email,Emailgroup.email_id == Email.id).filter(Emailgroup.group_id==Email.id).all()
+	for email in emails:
+		return str(email)
+	return jsonify({'emails':emails})
 @app.route('/admin/mail', methods = ['GET', 'POST'])
 @app.route('/admin/mail/', methods = ['GET', 'POST'])
+@app.route('/admin/mail/<id>/<action>', methods = ['GET', 'POST'])
+@app.route('/admin/mail/<id>/<action>/', methods = ['GET', 'POST'])
 @auth.login_required
-def admin_mail():
-	if request.method=="GET":
-		emails=Email.query.order_by(Email.id.desc())
-		groups=Group.query.order_by(Group.id.desc())
-		return render_template("admin/form/maillist.html",groups=groups,emails=emails)
+def admin_mail(id=0,action=''):
+	email_to_send = EmailList.query.count()
+	emails=Email.query.order_by(Email.id.desc())
+	groups=Group.query.order_by(Group.id.desc())
+	if action=='edit':
+		if request.method=='GET':
+			email=Email.query.filter_by(id=id)
+			return render_template("admin/form/maillist.html",email_to_send=email_to_send,email_object=email,groups=groups,emails=emails)
+		else:
+			obj = Email.query.filter_by(id=id)
+			obj.update({"name" : request.form['name'],'email':request.form['email']})
+		   	status = db.session.commit()
+		   	if not status:
+				flash("Email updated successfully")
+				return redirect(url_for('admin_mail'))
+			else:
+				flash("Error in updating email !")
+				return redirect(url_for('admin_mail'))
+	elif action=='delete':
+		obj=Email.query.filter_by(id=id).first()
+		status = Email.delete(obj)
+		if not status:
+			flash("Email deleted successfully")
+			return redirect(url_for('admin_mail'))
+		else:
+			flash("Error in deleting email !")
+			return redirect(url_for('admin_mail'))
+	elif request.method=="GET":
+		return render_template("admin/form/maillist.html",email_to_send=email_to_send,groups=groups,emails=emails)
 	else:
 		obj=Email(request.form['email'],request.form['name'])
    		status=Email.add(obj)
@@ -1041,7 +1074,6 @@ def sendEmail():
 			sched.shutdown(wait=False)
 			# Shutdown your cron thread if the web process is stopped
 			# atexit.register(lambda: sched.shutdown(wait=False))
-			print 'xx'
 			email_count=0
 			subject=''
 			description=''
@@ -1050,9 +1082,10 @@ def sendEmail():
 @app.route('/admin/email/', methods = ['GET', 'POST'])
 @auth.login_required
 def admin_email():
+	email_to_send = EmailList.query.count()
 	if request.method=="GET":
 		groups=Group.query.order_by(Group.id.desc())
-		return render_template("admin/form/sendmail.html",groups=groups)
+		return render_template("admin/form/sendmail.html",email_to_send=email_to_send,groups=groups)
 	else:
 		global subject
 		global description
