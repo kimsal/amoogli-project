@@ -13,6 +13,7 @@ import math
 from models import *
 from forms import *
 import atexit
+from random import randint
 import logging
 logging.basicConfig()
 # def sendEmail():
@@ -1051,11 +1052,13 @@ sched = Scheduler()
 #after send need to clear variables
 def sendEmail():
 	with app.app_context():
+		random_time = randint(0,240)
+		print '======>>> time to send = '+str((int(120+random_time))/60)
+		time.sleep(random_time)
 		global email_count
 		global subject
 		global description
 		global group_send
-		print '======>>>'
 		obj=EmailList.query.limit(1)
 		if obj.count()>0:
 			email_count=email_count+1
@@ -1071,8 +1074,7 @@ def sendEmail():
 					msg = Message(subject_send,sender=email,recipients=[ob.email])
 					message_string=str(description_send)
 					msg.html = message_string
-					mail.send(msg)				
-					print "send email to => "+ob.name+"=>"+description_send
+					mail.send(msg)	
 					#remove email from email list after send
 					EmailList.delete(ob)
 				except Exception as e:
@@ -1123,7 +1125,7 @@ def admin_email():
 					except Exception as e:
 						print e.message
 		email_to_send = EmailList.query.count()
-		sched.add_interval_job(sendEmail, seconds=5)
+		sched.add_interval_job(sendEmail, seconds=120)
 		sched.start()
 		flash("Your Email will be sent successfully.")
 		groups = Group.query.all()
