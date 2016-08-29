@@ -216,8 +216,8 @@ class Email(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255),unique=True)
     name  = db.Column(db.String(255),nullable=True)
-    emailgroups=db.relationship('Emailgroup', backref="email", lazy='dynamic')
-    published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
+    published_at = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
+    emailgroup=db.relationship('Emailgroup', backref="email", lazy='dynamic')
     def __str__(self):
         return self.name
     def update(self):
@@ -239,8 +239,8 @@ class Email(db.Model):
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name  = db.Column(db.String(255))
-    emailgroups = db.relationship('Emailgroup', backref="group", lazy='dynamic')
-    published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
+    published_at = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
+    emailgroups=db.relationship('Emailgroup', backref='"group"', lazy='dynamic')
     def __str__(self):
         return self.name
     # def update(self):
@@ -259,8 +259,8 @@ class Group(db.Model):
         return db.session.commit()
 class Emailgroup(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email_id  = db.Column(db.Integer,db.ForeignKey('Email.id'),nullable=True)
-    group_id  = db.Column(db.Integer,db.ForeignKey("Group.id"),nullable=True)
+    email_id  = db.Column(db.Integer,db.ForeignKey('email.id'),nullable=True)
+    group_id  = db.Column(db.Integer,db.ForeignKey("group.id"),nullable=True)
     published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
     def __str__(self):
         return self.email_id
@@ -431,7 +431,7 @@ class EmailList(db.Model):
 if __name__ == '__main__':
     app.secret_key = SECRET_KEY
     app.config['DEBUG'] = True
-    app.config['SESSION_TYPE'] = 'filesystem'
+    # app.config['SESSION_TYPE'] = 'filesystem'
     app.debug = True
     manager.run()
     app.run()

@@ -65,7 +65,12 @@
     <script src="/static/admin/js/plugin/delete-table-row/delete-table-row.min.js"></script>
     <script src="/static/admin/js/plugin/select2/select2.min.js"></script>
     <script src="/static/admin/js/plugin/summernote/summernote.min.js"></script>
-    </head>
+    <!-- <script type="text/javascript">
+        $("button#bot2-Msg1.botTempo").click(function(){
+            alert('dd');
+        });
+    </script> -->
+</head>
     <body class="">
 
         <!-- HEADER -->
@@ -103,9 +108,6 @@
                                 <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
                             </li>
                             <li class="divider"></li>
-                            <li>
-                                <a href="profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
-                            </li>
                             <li class="divider"></li>
                             <li>
                                 <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <u>S</u>hortcut</a>
@@ -116,7 +118,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="login.html" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                                <a href="/admin/logout" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
                             </li>
                         </ul>
                     </li>
@@ -124,7 +126,7 @@
 
                 <!-- logout button -->
                 <div id="logout" class="btn-header transparent pull-right">
-                    <span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+                    <span> <a href="/admin/logout" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
                 </div>
                 <!-- end logout button -->
 
@@ -137,28 +139,7 @@
                 <!-- input: search field -->
                 <form action="/admin/search/" class="header-search pull-right">
                     <input id="search-fld"  type="text" name="q" required="" value="{{search}}" placeholder="Find your posts here" data-autocomplete='[
-                    "ActionScript",
-                    "AppleScript",
-                    "Asp",
-                    "BASIC",
-                    "C",
-                    "C++",
-                    "Clojure",
-                    "COBOL",
-                    "ColdFusion",
-                    "Erlang",
-                    "Fortran",
-                    "Groovy",
-                    "Haskell",
-                    "Java",
-                    "JavaScript",
-                    "Lisp",
-                    "Perl",
-                    "PHP",
-                    "Python",
-                    "Ruby",
-                    "Scala",
-                    "Scheme"]'>
+                    "Amoogli""]'>
                     <button type="submit">
                         <i class="fa fa-search"></i>
                     </button>
@@ -205,7 +186,7 @@
                     <li class="active">
                         <a href="/admin" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
                     </li>
-                    <li class="active">
+                    <li class="">
                         <a href="#"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent">Manage</span></a>
                         <ul>
                             <li>
@@ -234,7 +215,7 @@
                         </ul>
                     </li>
 
-                    <li class="active">
+                    <li class="">
                         <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Setting</span></a>
                         <ul>
                             <li>

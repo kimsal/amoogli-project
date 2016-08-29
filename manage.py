@@ -911,12 +911,15 @@ def verify_email():
 def sendingList(id=0,action='none'):
 	email_to_send = EmailList.query.count()
 	if action=='delete':
-		obj=EmailList.query.filter_by(id=id).first()
-		status = EmailList.delete(obj)
-		if not status:
-			flash("Email deleted from sending list successfully")
-		else:
-			flash("Error in deleting email from sending list !")
+		try:
+			ob=EmailList.query.filter_by(id=id).first()
+			status = EmailList.delete(ob)
+			if not status:
+				flash("Email deleted from sending list successfully")
+			else:
+				flash("Error in deleting email from sending list !")
+		except Exception as e:
+			print e.message
 	sendnigEmails = EmailList.query.all()
 	return render_template('/admin/emailsending.html',email_to_send=email_to_send,sendnigEmails=sendnigEmails)
 @app.route('/admin/email/group', methods = ['GET', 'POST'])
@@ -969,8 +972,11 @@ def admin_mail_group(slug='',action=''):
 					flash(e.message)
 					return redirect(url_for("admin_mail_group"))
 		elif action=='view':
-			allEmailsInGroup = 'Emailgroup.query.all()'
-			return render_template("admin/form/emailInGroup.html",allEmailsInGroup=allEmailsInGroup)
+			allEmailsInGroup = Emailgroup.query.join(Email).filter(Emailgroup.group_id==slug)
+			# for e in allEmailsInGroup:
+			# 	return str(e.id)
+			group = Group.query.filter_by(id=slug)
+			return render_template("admin/emailInGroup.html",group_object=group,allEmailsInGroup=allEmailsInGroup)
 		else:
 			#delete group
 			try:
@@ -1112,14 +1118,15 @@ def admin_email():
 						if help.count()<=0:
 							temp_object=EmailList(t.name,t.email)
 							EmailList.add(temp_object)
-						else:
-							print "Email already exists."
+						# else:
+						# 	print "Email already exists."
 					except Exception as e:
 						print e.message
 		email_to_send = EmailList.query.count()
 		sched.add_interval_job(sendEmail, seconds=5)
 		sched.start()
 		flash("Your Email will be sent successfully.")
+		groups = Group.query.all()
 		return render_template("admin/form/sendmail.html",email_to_send=email_to_send,groups=groups)
 @app.route('/admin/earn')
 @app.route('/admin/earn/')
