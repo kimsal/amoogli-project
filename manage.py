@@ -15,17 +15,13 @@ from forms import *
 import atexit
 from random import randint
 import logging
+import time
 logging.basicConfig()
-# def sendEmail():
-# 	print 'send email'
-# sched = Scheduler()
-# sched.add_interval_job(sendEmail, seconds=5)
-# sched.start()
-
 template ="template-2016"
 config=""
 email=''
 password=''
+send_name=''
 with open('config.txt','r') as f:
 	config=str(f.read())
 	data=config.split('\n')
@@ -33,6 +29,7 @@ with open('config.txt','r') as f:
 	limit=int(data[1].split('"')[1])
 	email=data[2].split('"')[1]
 	pwd=data[3].split('"')[1]
+	send_name=data[4].split('"')[1]
 ########## End Configuration ############
 #### send mail ####
 app.config.update(
@@ -805,6 +802,7 @@ def admin_choose_template(new_template):
 			limit=int(data[1].split('"')[1])
 			email=data[2].split('"')[1]
 			pwd=data[3].split('"')[1]
+			send_name=data[4].split('"')[1]
 		flash("Template changed successfully.")
 	except Exception as e:
 		flash(str(e.message))
@@ -834,6 +832,7 @@ def admin_limit(number=0):
 				limit=int(data[1].split('"')[1])
 				email=data[2].split('"')[1]
 				pwd=data[3].split('"')[1]
+				send_name=data[4].split('"')[1]
 			return jsonify({'success':"Ok" })
 		except Exception as e:
 			return jsonify({'success':str(e.message) })
@@ -1071,20 +1070,21 @@ def sendEmail():
 					
 					subject_send=subject_send.replace("{{email}}",ob.email)
 					description_send = description_send.replace("{{email}}",ob.email)
-					msg = Message(subject_send,sender=email,recipients=[ob.email])
+					msg = Message(subject_send,sender=(send_name,email),recipients=[ob.email])
 					message_string=str(description_send)
 					msg.html = message_string
+					# .reply_to
 					mail.send(msg)	
 					#remove email from email list after send
 					EmailList.delete(ob)
 				except Exception as e:
 					print e.message
 		else:
-			#clear variables
-			# sched.stop()
-			sched.shutdown(wait=False)
 			# Shutdown your cron thread if the web process is stopped
-			# atexit.register(lambda: sched.shutdown(wait=False))
+			sched.shutdown(wait=False)
+
+			
+			#clear variables
 			email_count=0
 			subject=''
 			description=''
@@ -1105,6 +1105,7 @@ def admin_email():
 		sched = Scheduler()
 		subject = request.form['subject']
 		description = request.form['description']
+		return description
 		groups = request.form.getlist('groups')
 		for group in groups:
 			print str(group)+"========="
