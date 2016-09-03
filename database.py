@@ -26,7 +26,7 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 #template is the url of selected template 
-ALLOWED_EXTENSIONS = set(['pdf','docx','txt'])
+ALLOWED_EXTENSIONS = set(['pdf','docx','txt','jpg','png','zip','rar'])
 #upload url for feature images
 app.config['UPLOAD_FOLDER'] = 'static/images/images/'
 expire_date = datetime.now()

@@ -410,6 +410,8 @@ class EmailList(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name  = db.Column(db.String(255))
     email  = db.Column(db.String(255))
+    subject  = db.Column(db.String(5000))
+    description  = db.Column(db.Text)
     def __str__(self):
         return self.name
     # def update(self):
@@ -417,11 +419,15 @@ class EmailList(db.Model):
     def to_Json(self):
         return dict(id=self.id,
             name=self.name,
-            email=self.email
+            email=self.email,
+            subject = self.subject,
+            description = self.description
             )
-    def __init__(self,name,email):
+    def __init__(self,name,email,subject,description):
         self.name =name,
-        self.email =email
+        self.email =email,
+        self.subject = subject,
+        self.description = description
     def add(messagelist):
         db.session.add(messagelist)
         return db.session.commit()

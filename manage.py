@@ -69,7 +69,7 @@ def get_auth_token():
 @app.route('/download/<name>')
 def download(name=''):
 	return send_file('static/files/'+name,
-                     mimetype='text/csv',
+                     mimetype='text/zip',
                      attachment_filename=name,
                      as_attachment=True)
 @app.route('/admin/login', methods=['POST', 'GET'])
@@ -1065,6 +1065,8 @@ def sendEmail():
 				#send email
 				print ob.name
 				try:
+					description = ob.description
+					subject = ob.subject
 					subject_send=subject.replace("{{name}}",ob.name)
 					description_send = description.replace("{{name}}",ob.name)
 					
@@ -1105,7 +1107,6 @@ def admin_email():
 		sched = Scheduler()
 		subject = request.form['subject']
 		description = request.form['description']
-		return description
 		groups = request.form.getlist('groups')
 		for group in groups:
 			print str(group)+"========="
@@ -1119,7 +1120,7 @@ def admin_email():
 					try:
 						help=EmailList.query.filter_by(email=t.email)
 						if help.count()<=0:
-							temp_object=EmailList(t.name,t.email)
+							temp_object=EmailList(t.name,t.email,subject,description)
 							EmailList.add(temp_object)
 						# else:
 						# 	print "Email already exists."
